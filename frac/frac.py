@@ -30,6 +30,12 @@ class Frac:
 
         return self_mult * self.num_ < other_mult * other.den_
 
+    def norm(self):
+        gcd_ = gcd(self.den_, self.num_)
+
+        self.den_ //= gcd_
+        self.num_ //= gcd_
+
     def __gt__(self, other):
         lcm_ = lcm(self.den_, other.den_)
 
@@ -59,10 +65,7 @@ class Frac:
         self.num_ = self.num_ * self_mult + other.num_ * other_mult
         self.den_ = lcm_
 
-        gcd_ = gcd(self.num_, self.den_)
-
-        self.num_ //= gcd_
-        self.den_ //= gcd_
+        self.norm()
 
         return self
 
@@ -70,6 +73,54 @@ class Frac:
         tmp = self.__copy__()
 
         tmp += other
+
+        return tmp
+
+    def __neg__(self):
+        return Frac(-self.num_, self.den_)
+
+    def __isub__(self, other):
+        self.__iadd__(-other)
+
+        return self
+
+    def __sub__(self, other):
+        tmp = self.__copy__()
+
+        tmp -= other
+
+        return tmp
+
+    def __imul__(self, other):
+        self.num_ *= other.num_
+        self.den_ *= other.den_
+
+        self.norm()
+
+        return self
+
+    def __mul__(self, other):
+        tmp = self.__copy__()
+
+        tmp *= other
+
+        return tmp
+
+    def __float__(self):
+        return float(self.num_) / self.den_
+
+    def __itruediv__(self, other):
+        self.num_ *= other.den_
+        self.den_ *= other.num_
+
+        self.norm()
+
+        return self
+
+    def __truediv__(self, other):
+        tmp = self.__copy__()
+
+        tmp /= other
 
         return tmp
 
