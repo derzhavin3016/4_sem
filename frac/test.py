@@ -4,7 +4,7 @@ import frac
 
 
 def main():
-    f = frac.Frac(2, 0)
+    f = frac.Frac(1, 25) / frac.Frac(25, 50)
     print(f)
 
 
