@@ -57,7 +57,7 @@ class Frac:
         other_mult = lcm_ // other.den_
 
         self.num_ = self.num_ * self_mult + other.num_ * other_mult
-        self.den_ = self.den_ * self_mult + other.den_ * other_mult
+        self.den_ = lcm_
 
         gcd_ = gcd(self.num_, self.den_)
 
@@ -67,4 +67,9 @@ class Frac:
         return self
 
     def __add__(self, other):
-        tmp
+        tmp = self.__copy__()
+
+        tmp += other
+
+        return tmp
+
