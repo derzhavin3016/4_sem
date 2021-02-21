@@ -1,5 +1,13 @@
+#!/usr/bin/python3
+
 from math import gcd
-from math import lcm
+from copy import copy
+
+
+def lcm(a, b):
+    """Compute the lowest common multiple of a and b"""
+    return a * b // gcd(a, b)
+
 
 class Frac:
     # constructor
@@ -7,6 +15,9 @@ class Frac:
         gcd_ = gcd(numerator, denominator)
         self.num_ = numerator // gcd_
         self.den_ = denominator // gcd_
+
+    def __copy__(self):
+        return Frac(self.num_, self.den_)
 
     def __str__(self):
         return f'({self.num_} / {self.den_})'
@@ -39,20 +50,21 @@ class Frac:
     def __ne__(self, other):
         return not self.__eq__(other)
 
-    def __add__(self, other):
+    def __iadd__(self, other):
         lcm_ = lcm(self.den_, other.den_)
 
         self_mult = lcm_ // self.den_
         other_mult = lcm_ // other.den_
 
-        return Frac(self.num_ * self_mult + other.num_ * other_mult,
-                    self.den_ * self_mult + other.den_ * other_mult)
+        self.num_ = self.num_ * self_mult + other.num_ * other_mult
+        self.den_ = self.den_ * self_mult + other.den_ * other_mult
 
+        gcd_ = gcd(self.num_, self.den_)
 
-def main():
-    f = Frac(200, 8)
-    print(f)
+        self.num_ //= gcd_
+        self.den_ //= gcd_
 
+        return self
 
-if __name__ == '__main__':
-    main()
+    def __add__(self, other):
+        tmp
