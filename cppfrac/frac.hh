@@ -21,7 +21,7 @@ namespace mth
       auto gcd = std::gcd(num, den);
 
       num_ = num / gcd;
-      den_ = num / gcd;
+      den_ = den / gcd;
     }
 
     Frac( const Frac &that ) = default;
