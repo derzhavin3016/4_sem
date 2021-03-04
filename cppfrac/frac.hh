@@ -13,7 +13,7 @@ namespace mth
     uint den_{};
   public:
 
-    Frac(int num, uint den)
+    Frac(int num, uint den = 1)
     {
       if (den == 0)
         throw std::runtime_error{"Denomenator equals zero!!"};
@@ -162,11 +162,11 @@ private:
     return sum;
   }
 
-  Frac operator -( const Frac &lhs, const Frac &rhs 
+  Frac operator -( const Frac &lhs, const Frac &rhs )
   {
     Frac sub = lhs;
 
-    sub += rhs;
+    sub -= rhs;
 
     return sub;
   }
@@ -175,7 +175,7 @@ private:
   {
     Frac mul = lhs;
 
-    mul += rhs;
+    mul *= rhs;
 
     return mul;
   }
@@ -184,7 +184,7 @@ private:
   {
     Frac div = lhs;
 
-    div += rhs;
+    div /= rhs;
 
     return div;
   }
