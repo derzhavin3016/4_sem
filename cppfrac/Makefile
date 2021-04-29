@@ -1,2 +1,2 @@
 all:
-	g++ -std=c++2a -Wall -Wextra main.cc -o frac
+	g++ -std=c++20 -Wall -Wextra main.cc -o frac
