@@ -1,15 +1,16 @@
 #!/usr/bin/python3
+"""Fraction class module"""
 
 from math import gcd
-from copy import copy
 
 
-def lcm(a, b):
+def lcm(a_num, b_num):
     """Compute the lowest common multiple of a and b"""
-    return a * b // gcd(a, b)
+    return a_num * b_num // gcd(a_num, b_num)
 
 
 class Frac:
+    """Fraction class implementation"""
     # constructor
     def __init__(self, numerator, denominator):
         gcd_ = gcd(numerator, denominator)
@@ -31,6 +32,9 @@ class Frac:
         return self_mult * self.num_ < other_mult * other.den_
 
     def norm(self):
+        """
+        norm(self) -> void
+        """
         gcd_ = gcd(self.den_, self.num_)
 
         self.den_ //= gcd_
@@ -123,4 +127,3 @@ class Frac:
         tmp /= other
 
         return tmp
-
