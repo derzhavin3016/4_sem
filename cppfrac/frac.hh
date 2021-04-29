@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <numeric>
+#include <compare>
 
 namespace mth
 {
@@ -41,40 +42,14 @@ namespace mth
       return ist;
     }
 
-    bool operator <( const Frac &that ) const
+    std::strong_ordering operator <=>( const Frac &that ) const
     {
       auto pr = lcm_div(that);
 
-      return pr.first * num_ < pr.second * that.num_;
+      return pr.first * num_ <=> pr.second * that.num_;
     }
 
-    bool operator >( const Frac &that ) const
-    {
-      auto pr = lcm_div(that);
-
-      return pr.first * num_ > pr.second * that.num_;
-    }
-
-    bool operator <=( const Frac &that ) const
-    {
-      return !operator >(that);
-    }
-
-    bool operator >=( const Frac &that ) const
-    {
-      return !operator <(that);
-    }
-
-    bool operator ==( const Frac &that ) const
-    {
-      return num_ == that.num_ && den_ == that.den_;
-    }
-
-    bool operator !=( const Frac &that ) const
-    {
-      return !operator ==(that);
-    }
-
+    
     Frac &operator +=( const Frac &that )
     {
       auto pr = lcm_div(that);
